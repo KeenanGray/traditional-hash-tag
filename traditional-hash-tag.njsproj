@@ -11,7 +11,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>90dde704-b6b4-44d6-8d0b-076210144e65</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>index.js</StartupFile>
+    <StartupFile>private\index.js</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -28,11 +28,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="hashtagGame.js" />
-    <Compile Include="index.js" />
-    <Compile Include="test.js" />
-  </ItemGroup>
-  <ItemGroup>
+    <Folder Include="private\" />
     <Folder Include="public\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="views\" />
@@ -53,6 +49,10 @@
     </Content>
     <Content Include="views\partials\header.ejs" />
     <Content Include="views\partials\nav.ejs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="private\hashtagGame.js" />
+    <Compile Include="private\index.js" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
