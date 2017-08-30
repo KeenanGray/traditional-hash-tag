@@ -1,4 +1,11 @@
-function BeginCapture () {
+function SavePhoto() {
+    context.drawImage(player, 0, 0, canvas.width, canvas.height);
+
+    // Stop all video streams.
+    //player.srcObject.getVideoTracks().forEach(track => track.stop());
+}
+
+function BeginCapture() {
     const player = document.getElementById('player');
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
@@ -8,13 +15,13 @@ function BeginCapture () {
         video: true,
     };
 
-    captureButton.addEventListener('click', () => {
+    captureButton.addEventListener('click', captureButton.addEventListener('click', () => {
         context.drawImage(player, 0, 0, canvas.width, canvas.height);
-        
+
         // Stop all video streams.
         //player.srcObject.getVideoTracks().forEach(track => track.stop());
-    });
-
+    }));
+    
     navigator.mediaDevices.getUserMedia(constraints)
         .then((stream) => {
             // Attach the video stream to the video element and autoplay.

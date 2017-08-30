@@ -28,7 +28,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="hashtagGame.js" />
+    <Compile Include="public\hashtagGame.js" />
     <Compile Include="index.js" />
     <Compile Include="test.js" />
   </ItemGroup>
