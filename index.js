@@ -33,31 +33,44 @@ app.get('/JoinGame', function (request, response) {
     response.render('pages/GameRunning');
 });
 
+var uploading = false;
+
 //The upload code was found here.
 //https://coligo.io/building-ajax-file-uploader-with-node/
 //Modified by me to use Cloudinary
 app.post('/Upload', function (req, res) {
-    // create an incoming form object
-    var form = new formidable.IncomingForm();
+    if (!uploading) {
+        uploading = true;
+        // create an incoming form object
+        var form = new formidable.IncomingForm();
 
-    // specify that we want to allow the user to upload multiple files in a single request
-    form.multiples = true;
+        // specify that we want to allow the user to upload multiple files in a single request
+        form.multiples = true;
 
-      // store all uploads in the /uploads directory
-    form.uploadDir = path.join(__dirname, '/uploads');
+        // store all uploads in the /uploads directory
+        form.uploadDir = path.join(__dirname, '/uploads');
 
-    // every time a file has been uploaded successfully,
-    // rename it to it's orignal name
-    form.on('file', function (field, file) {
-        fs.rename(file.path, path.join(form.uploadDir, file.name));
-    });
+        // every time a file has been uploaded successfully,
+        // rename it to it's orignal name
+        form.on('file', function (field, file) {
+            fs.rename(file.path, path.join(form.uploadDir, file.name));
+        });
 
-    form.on('file', function (field, file) {
-        cloudinary.uploader.upload(path.join(form.uploadDir, file.name),
-            function (result) { //console.log(result) 
-            })
-    });
+        form.on('file', function (field, file) {
+            cloudinary.uploader.upload(path.join(form.uploadDir, file.name),
+                function (result) {
+                    uploading = false//console.log(result) 
+                })
+        });
 
+        // parse the incoming request containing the form data
+        if (req)
+            form.parse(req);
+
+    }
+    else {
+        console.log("a problem with the upload");
+    }
     //// store all uploads in the /uploads directory
     //form.uploadDir = path.join(__dirname, '/uploads');
 
@@ -77,8 +90,9 @@ app.post('/Upload', function (req, res) {
     //    res.end('success');
     //});
 
-    // parse the incoming request containing the form data
-    form.parse(req);
+    //// parse the incoming request containing the form data
+    //if (req)
+    //    form.parse(req);
 
 });
 
