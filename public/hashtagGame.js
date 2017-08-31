@@ -13,17 +13,22 @@ function JoinGame() {
 function PhotoAdded() {
     selectedFile = document.getElementById('takePictureField').files[0];
 
-    if (selectedFile) {
-        alert(selectedFile);
-    }
-    //$.ajax({
-    //    type: 'GET',
-    //    url: '/Upload',
-    //    success: function (result) {
-    //        $("html").html(result);
+    var formData = new FormData();
+    formData.append('uploads[]', selectedFile, selectedFile.name);
 
-    //    }
-    //});
+
+    if (selectedFile) {
+        $.ajax({
+            url: '/Upload',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log('upload successful!');
+            }
+        });
+    }
 }
 
 

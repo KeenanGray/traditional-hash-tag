@@ -8,9 +8,8 @@
 <body>
     <div class="container">
         <h1>You are in the game, click the button below to open your camera and start playing!</h1>
+        <input type="file" capture="camera" onchange="PhotoAdded()" accept="image/*" id="takePictureField">
 
-        <input type="file" capture="camera" multiple onchange="PhotoAdded()" accept="image/*" id="takePictureField">
-       
         <img id="yourimage">
 
         <!--<button id="start" onclick="BeginCapture()" width="320" height="240">Start</button>

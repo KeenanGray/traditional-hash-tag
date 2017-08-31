@@ -33,6 +33,7 @@
     <Compile Include="test.js" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="uploads\" />
     <Folder Include="public\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="views\" />
