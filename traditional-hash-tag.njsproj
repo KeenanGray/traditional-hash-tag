@@ -47,8 +47,11 @@
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
     <Content Include="views\pages\db.ejs" />
+    <Content Include="views\pages\GameRunning.ejs">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\pages\index.ejs" />
-    <Content Include="views\pages\TestPage.ejs">
+    <Content Include="views\pages\indexbkup.ejs">
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\partials\header.ejs" />

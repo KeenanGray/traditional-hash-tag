@@ -1,6 +1,5 @@
-function ChangePage() {
+var cloudinary = require('cloudinary')
 
-}
 
 function SavePhoto() {
     context.drawImage(player, 0, 0, canvas.width, canvas.height);
@@ -9,17 +8,9 @@ function SavePhoto() {
     //player.srcObject.getVideoTracks().forEach(track => track.stop());
 }
 
-function BeginCapture() {
-    function hasGetUserMedia() {
-        return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-            navigator.mozGetUserMedia || navigator.msGetUserMedia);
-    }
-
-    if (hasGetUserMedia()) {
-        // Good to go!
-    } else {
-        alert('getUserMedia() is not supported in your browser');
-    }
+function BeginStreamCapture() {
+    debug("hello");
+    return;
 
     const player = document.getElementById('player');
     const canvas = document.getElementById('canvas');
@@ -36,10 +27,18 @@ function BeginCapture() {
         // Stop all video streams.
         //player.srcObject.getVideoTracks().forEach(track => track.stop());
     }));
-    
+
     navigator.mediaDevices.getUserMedia(constraints)
         .then((stream) => {
             // Attach the video stream to the video element and autoplay.
             player.srcObject = stream;
         });
+}
+
+function UploadPhoto() {
+    console.log("function called");
+    var input = document.getElementById('takePictureField'); 
+
+    cloudinary.uploader.upload(input.files[0],
+        function (result) { console.log(result) })
 }
