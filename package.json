@@ -16,7 +16,8 @@
     "cloudinary": "",
     "formidable": "1.1.1",
     "path": "0.12.7",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+      "dotenv": "4.0.0"
   },
   "devDependencies": {
     "request": "^2.81.0",
