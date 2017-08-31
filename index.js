@@ -37,8 +37,6 @@ app.get('/JoinGame', function (request, response) {
 //https://coligo.io/building-ajax-file-uploader-with-node/
 //Modified by me to use Cloudinary
 app.post('/Upload', function (req, res) {
-    console.log("post");
-
     // create an incoming form object
     var form = new formidable.IncomingForm();
 
@@ -55,7 +53,6 @@ app.post('/Upload', function (req, res) {
     });
 
     form.on('file', function (field, file) {
-        console.log("File got");
         cloudinary.uploader.upload(path.join(form.uploadDir, file.name),
             function (result) { //console.log(result) 
             })
