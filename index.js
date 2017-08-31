@@ -47,14 +47,16 @@ app.post('/Upload', function (req, response) {
     // store all uploads in the /uploads directory
     form.uploadDir = path.join(__dirname, '/uploads');
 
+    var count = 0;
     // every time a file has been uploaded successfully,
     // rename it to it's orignal name
     form.on('file', function (field, file) {
+        count++;
         fs.rename(file.path, path.join(form.uploadDir, file.name));
 
         cloudinary.uploader.upload(path.join(form.uploadDir, file.name),
             function (result) {
-                console.log("uploaded");
+                console.log("uploaded " + count);
                     })
     });
 

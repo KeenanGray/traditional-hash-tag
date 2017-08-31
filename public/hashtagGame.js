@@ -9,26 +9,44 @@ function JoinGame() {
     });
 }
 
+function PrimaryButtonPressed() {
+    var buttons = document.getElementsByTagName('input');
+
+    for (var i = 0; i < buttons.length; i++) {
+        var btn = buttons[i];
+        if (btn.files[0] == null)
+        {
+            btn.click();
+        }
+    }
+}
+
 
 function UploadPhotos() {
-    var files = document.getElementById('takePictureField').files;
+    var Storage = document.getElementsByTagName('input');
+    var files = Storage[0].files;
 
-    if (files.length > 0) {
-        // One or more files selected, process the file upload
+    // create a FormData object which will be sent as the data payload in the
+    // AJAX request
+    var formData = new FormData();
 
-        // create a FormData object which will be sent as the data payload in the
-        // AJAX request
-        var formData = new FormData();
+    for (var field = 0; field < Storage.length; field++) {
+        files = Storage[field].files;
+    
+        if (files.length > 0) {
 
-        // loop through all the selected files
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
+            // One or more files selected, process the file upload
 
-            // add the files to formData object for the data payload
-            formData.append('uploads[]', file, file.name);
+            // loop through all the selected files
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+
+                // add the files to formData object for the data payload
+                formData.append('uploads[]', file, file.name);
+            }
         }
-
     }
+    
     $.ajax({
         url: '/Upload',
         type: 'POST',
@@ -67,6 +85,7 @@ function UploadPhotos() {
         }
 
     });
+
 }
 
 
