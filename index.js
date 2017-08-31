@@ -6,7 +6,6 @@ var path = require('path');
 var fs = require('fs');
 require('dotenv').config()
 
-
 cloudinary.config({
     cloud_name: process.env.cloudinary_cloud_name,
     api_key: process.env.cloudinary_api_key,
@@ -46,9 +45,20 @@ app.post('/Upload', function (req, res) {
     // specify that we want to allow the user to upload multiple files in a single request
     form.multiples = true;
 
+      // store all uploads in the /uploads directory
+    form.uploadDir = path.join(__dirname, '/uploads');
+
+    // every time a file has been uploaded successfully,
+    // rename it to it's orignal name
     form.on('file', function (field, file) {
-        cloudinary.uploader.upload(file.name,
-            function (result) { console.log(result) })
+        fs.rename(file.path, path.join(form.uploadDir, file.name));
+    });
+
+    form.on('file', function (field, file) {
+        console.log("File got");
+        cloudinary.uploader.upload(path.join(form.uploadDir, file.name),
+            function (result) { //console.log(result) 
+            })
     });
 
     //// store all uploads in the /uploads directory
@@ -70,8 +80,8 @@ app.post('/Upload', function (req, res) {
     //    res.end('success');
     //});
 
-    //// parse the incoming request containing the form data
-    //form.parse(req);
+    // parse the incoming request containing the form data
+    form.parse(req);
 
 });
 
