@@ -1,13 +1,31 @@
-function ChangePage() {
+function JoinGame() {
+    $.ajax({
+        type: 'GET',
+        url: '/JoinGame',
+        success: function (result) {
+            $("html").html(result);
 
+        }
+    });
 }
 
-function SavePhoto() {
-    context.drawImage(player, 0, 0, canvas.width, canvas.height);
 
-    // Stop all video streams.
-    //player.srcObject.getVideoTracks().forEach(track => track.stop());
+function PhotoAdded() {
+    selectedFile = document.getElementById('takePictureField').files[0];
+
+    if (selectedFile) {
+        alert(selectedFile);
+    }
+    //$.ajax({
+    //    type: 'GET',
+    //    url: '/Upload',
+    //    success: function (result) {
+    //        $("html").html(result);
+
+    //    }
+    //});
 }
+
 
 function BeginCapture() {
     function hasGetUserMedia() {
@@ -36,7 +54,7 @@ function BeginCapture() {
         // Stop all video streams.
         //player.srcObject.getVideoTracks().forEach(track => track.stop());
     }));
-    
+
     navigator.mediaDevices.getUserMedia(constraints)
         .then((stream) => {
             // Attach the video stream to the video element and autoplay.
