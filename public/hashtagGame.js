@@ -4,6 +4,7 @@ function JoinGame() {
         url: '/JoinGame',
         success: function (result) {
             $("html").html(result);
+            $.html(result);
 
         }
     });
