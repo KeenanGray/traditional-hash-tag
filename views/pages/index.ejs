@@ -2,15 +2,14 @@
 <html>
 <head>
     <title>Home Page</title>
-    <link rel="stylesheet" href="StyleSheet.css">
-    <script src="hashtagGame.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+
+    <% include ../partials/header.ejs %>
 
 </head>
 <body>
     <div class="container">
         <h1>Welcome to hashTAG, a modern take on freeze-tag</h1>
-        <button onclick="JoinGame()">JoinGame</button>
+        <button class="btn-primary" onclick="JoinGame()">JoinGame</button>
 
     </div>
 </body>
